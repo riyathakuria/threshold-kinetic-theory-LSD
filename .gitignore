@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+# R-specific
+.Rhistory
+.RData
+.Rproj.user/
+.Rapp.history
+*-Ex.R
+/conn.log
