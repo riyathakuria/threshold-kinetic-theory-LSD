@@ -1,0 +1,91 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import tkinter as tk
+from tkinter import filedialog
+import os
+
+def select_file():
+    root = tk.Tk()
+    root.withdraw()
+    print("Select your 'Lastly_Mapped_Gene_Microglia_States.csv' file...")
+    path = filedialog.askopenfilename(title="Select Mapped Genes CSV", filetypes=[("CSV files", "*.csv")])
+    return path
+
+def generate_refined_flower_plot(file_path):
+    # 1. Load Data
+    df = pd.read_csv(file_path)
+
+    # 2. Consolidation & Exclusion Logic
+    excluded_states = ['AD_Antigen_Pres', 'Transitional', 'Proliferating']
+    
+    group_map = {
+        'Homeostatic_1': 'Homeostatic',
+        'Homeostatic_2': 'Homeostatic',
+        'Anti_Inflam_1': 'Anti_inflammatory',
+        'Anti_Inflam_2': 'Anti_inflammatory',
+        'Stress_Response': 'Stress_Response',
+        'Interferon_Resp': 'Interferon_Resp'
+    }
+    
+    # Filter out excluded data
+    df_filtered = df[~df['Primary_Microglia_State'].isin(excluded_states)].copy()
+    df_filtered['Consolidated_State'] = df_filtered['Primary_Microglia_State'].map(group_map)
+    counts = df_filtered['Consolidated_State'].value_counts()
+
+    # 3. Color Palette & Order
+    # Order: Homeostatic (Stability) -> Stress/Interferon (Crash) -> Anti-inflammatory (Response)
+    order = ['Homeostatic', 'Stress_Response', 'Interferon_Resp', 'Anti_inflammatory']
+    final_order = [s for s in order if s in counts.index]
+    final_counts = [counts[s] for s in final_order]
+    
+    color_logic = {
+        'Homeostatic': '#212526',
+        'Stress_Response': '#7D2827',
+        'Interferon_Resp': '#7D2827',
+        'Anti_inflammatory': '#2A664D'
+    }
+    plot_colors = [color_logic[s] for s in final_order]
+
+    # 4. Create Flower Plot
+    num_vars = len(final_order)
+    angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
+    width = (2 * np.pi) / num_vars
+
+    fig, ax = plt.subplots(figsize=(10, 10), subplot_kw={'projection': 'polar'})
+    
+    bars = ax.bar(angles, final_counts, width=width, color=plot_colors, 
+                  alpha=0.9, edgecolor='white', linewidth=2)
+
+    # Aesthetics
+    ax.set_theta_offset(np.pi / 2)
+    ax.set_theta_direction(-1)
+    ax.set_xticks(angles)
+    
+    clean_labels = [s.replace('_', ' ') for s in final_order]
+    ax.set_xticklabels(clean_labels, fontsize=14, fontweight='bold', fontname='Arial')
+    
+    ax.set_yticklabels([])
+    ax.spines['polar'].set_visible(False)
+    ax.grid(False)
+
+    # Add count labels
+    for angle, count in zip(angles, final_counts):
+        ax.text(angle, count + 0.5, str(count), ha='center', va='bottom', 
+                fontsize=15, fontweight='bold', color='#333333')
+
+    plt.title("Functional Landscape of PPI Target Genes\n(Consolidated & Refined)", 
+              fontsize=18, fontweight='bold', pad=40, fontname='Arial')
+
+    # 5. Save in 3 Formats
+    base_name = "Refined_PPI_Microglia_Flower"
+    plt.savefig(f"{base_name}.png", dpi=300, bbox_inches='tight')
+    plt.savefig(f"{base_name}.pdf", format='pdf', bbox_inches='tight')
+    plt.savefig(f"{base_name}.tiff", format='tiff', dpi=300, bbox_inches='tight')
+    
+    print(f"\nSUCCESS: Refined Plot saved in PNG, PDF, and TIFF formats.")
+
+# --- Execute ---
+path = select_file()
+if path:
+    generate_refined_flower_plot(path)
