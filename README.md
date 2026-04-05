@@ -2,7 +2,7 @@
 Computational modeling and kinetic analysis of lysosomal storage disorder (Niemann-Pick Disease), focusing on sphingolipid metabolism thresholds. 
 
 **Proteomic Refinement Funnel**
-We executed a multi-stage filtration pipeline with biological relavance. _Proteomic_filtration_funnel.py_
+We executed a multi-stage filtration pipeline with Microglial lysosomal palmitoylome relevance. _Proteomic_filtration_funnel.py_
 
 **1. The Foundational Atlas**
 The project began with the Brain Lysosome Atlas-microglia (BLA), a comprehensive dataset of microglial-specific lysosomal proteomics. This ensured that all downstream analysis was grounded in the unique metabolic profile of microglia rather than generic neuronal or systemic lysosomal data. (n=5353), _Count_unique_brain_lysosome_proteins.py_
