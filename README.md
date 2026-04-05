@@ -36,7 +36,7 @@ _Spatiotemporal_mapping_of_PPI_candidates.py_, _ABA_heatmap.py_
 
 For downstream analysis, the developmental timeline was grouped into 4 developmental groups. _Splitting_to_developmentalstages_postABA.py_
 
-**7.Kinetic Stability **
+**7.Kinetic Stability**
 Variance-Based Classification: Genes were categorized as Stable or Dynamic based on their expression variance across the developmental timeline.
 
 Regional Ranking: Identified the Stable Genes (constitutively expressing) and Dynamic Genes (developmentally fluctuating) for each region and visualised by stacked bar plot. 
