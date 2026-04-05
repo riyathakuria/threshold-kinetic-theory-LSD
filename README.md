@@ -9,7 +9,8 @@ The project began with the Brain Lysosome Atlas-microglia (BLA), a comprehensive
 
 **2. Systematic Literature Curation**
 To ensure pathological relevance, the BLA was cross-referenced against a manually curated protein library (n = 1207) of 126 peer-reviewed studies strictly focused on Lysosomal Storage Disorders (LSDs). This manual verification step identified a high-confidence list of proteins that are  directly implicated in LSD pathogenesis.(n=647), _Brain lysosome atlas mapped to LSD proteins.py_
-**
+
+
 **3.Deep-Learning Palmitoylation Prediction Screening**
 To identify post-translational modification sites, we screened the LSD candidates for S-palmitoylation:
 
