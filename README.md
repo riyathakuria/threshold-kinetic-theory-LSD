@@ -1,7 +1,7 @@
 # Threshold-kinetic-theory-LSD
 Computational modeling and kinetic analysis of lysosomal storage disorder (Niemann-Pick Disease), focusing on sphingolipid metabolism thresholds. 
 
-Proteomic Refinement Funnel
+**Proteomic Refinement Funnel**
 We executed a multi-stage filtration pipeline with biological relavance. _Proteomic_filtration_funnel.py_
 
 **1. The Foundational Atlas**
