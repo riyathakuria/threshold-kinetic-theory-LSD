@@ -212,3 +212,4 @@ __marimo__/
 .Rapp.history
 *-Ex.R
 /conn.log
+.DS_Store
