@@ -1,23 +1,4 @@
-#!/usr/bin/env python3
-"""
-Phase 2 · Step 05 — Publication figures H1-H4
-=============================================
 
-All figures are built from the step 02-04 CSV tables (no h5ad reload) on the
-native SCT Pearson-residual scale. Arial, 300 dpi PNG + vector PDF.
-
-H1  Gene x state mean-residual heatmap (41 genes, 9 states), rows grouped by
-    STRING module with a stability side-strip. The granular expression map.
-H2  Module x state activity heatmap (8 modules, 9 states) — module-level
-    aggregate showing where each conserved program is most active.
-H3  Module conservation properties: (a) within-module coherence (all cells vs
-    most-active state), (b) Stable/Dynamic composition per module.
-H4  Module-centric synthesis dashboard (the Phase 3 reference figure): one row
-    per module aligning peak activity, preferred state, representative gene,
-    and Stable/Dynamic composition.
-
-Outputs: figures/H1_gene_state_heatmap.{png,pdf} ... H4_*.{png,pdf}
-"""
 import os
 import sys
 
