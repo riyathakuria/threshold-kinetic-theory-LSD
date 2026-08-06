@@ -3,9 +3,7 @@ import numpy as np
 import re
 
 # --- 1. CONFIGURATION ---
-ppi_path = r"/Users/riyathakuria/Documents/LSD_Insilico_Analysis_24:3:26/Raw data/Top10_PPI_clusters.xlsx"
-matrix_path = r"/Users/riyathakuria/Documents/Common datasets/Arranged latest Gene_Matrix data.xlsx"
-output_path = r"/Users/riyathakuria/Documents/LSD_Insilico_Analysis_24:3:26/Raw data/PPI_SpatioTemporal_Expression.csv"
+ROOT = Path(__file__).resolve().parents[3]
 
 lineages = {
     'Striatum': ['medial ganglionic eminence', 'lateral ganglionic eminence', 'striatum'],
