@@ -2,14 +2,6 @@
 """
 Phase 1 - Step 1: Acquire HuMicA v2.0.0 (.h5ad) from Zenodo record 18458280.
 
-- Queries the Zenodo API for the record's file list, sizes, and MD5 checksums.
-- Downloads HuMicA_v2.0.0.h5ad into data/raw/ ONLY if absent or integrity fails.
-- Streams to disk while computing SHA256 and MD5 on the fly (no full-file re-read).
-- Verifies the downloaded MD5 against the Zenodo-published checksum.
-- Writes/updates data/download_manifest.csv.
-
-Reproducible: safe to re-run. An already-verified file is reused, not re-downloaded.
-"""
 import os, sys, json, hashlib, csv, datetime, time, re
 import urllib.request
 
