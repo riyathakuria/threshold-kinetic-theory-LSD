@@ -1,26 +1,3 @@
-#!/usr/bin/env python3
-"""
-Phase 3 · Step 07a — Acquire NPC disease datasets from GEO
-==========================================================
-
-Downloads the two Niemann-Pick type C (NPC) mouse microglial datasets used as
-the Phase 3 disease axis, into data/raw/npc/. Both are mouse (Mus musculus).
-
-  GSE221609  snRNA-seq, Npc1-/- vs WT forebrain (6 samples, 10x MTX triplet).
-             PMID 37407594. Microglia are a SUBSET (oligodendrocyte-focused
-             study) — extracted in step 07.
-               GSM6890285/286/287 = WT forebrain 1/2/3       (barcode -1/-2/-3)
-               GSM6890288/289/290 = Npc1-/- forebrain 1/2/3  (barcode -4/-5/-6)
-  GSE152158  bulk RNA-seq of FACS-purified microglia across disease course
-             (WT/NPC at 1/3/6/9 weeks + PLX5622 arm). One normalized count CSV.
-
-Idempotent: files already present with a matching size are not re-downloaded.
-MD5 of every file is logged to data/raw/npc/download_manifest.csv. This script
-does NOT touch any Phase 1/2 checkpoint.
-"""
-
-from __future__ import annotations
-
 import csv
 import hashlib
 import sys
