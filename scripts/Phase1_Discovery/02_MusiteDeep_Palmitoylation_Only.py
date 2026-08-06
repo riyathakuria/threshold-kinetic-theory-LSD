@@ -3,8 +3,7 @@ import requests
 import time
 
 # 1. Define File Paths (Updated to use the 'Raw data' folder)
-input_csv = "/Users/riyathakuria/Documents/LSD_Insilico_Analysis_24:3:26/Raw data/Mapped_LSD_Microglia_Overlap_Deduplicated.csv"
-output_csv = "/Users/riyathakuria/Documents/LSD_Insilico_Analysis_24:3:26/Raw data/MusiteDeep_Palmitoylation_Predictions.csv"
+ROOT = Path(__file__).resolve().parents[2]
 
 def get_uniprot_sequence(uniprot_id):
     """Fetches the canonical FASTA sequence from UniProt."""
