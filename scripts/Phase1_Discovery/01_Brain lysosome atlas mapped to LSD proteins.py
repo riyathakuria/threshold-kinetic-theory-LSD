@@ -3,8 +3,7 @@ import pandas as pd
 import os
 
 # 1. Define your exact file paths
-large_tsv_path = "/Users/riyathakuria/Documents/LSD_Insilico_Analysis_24:3:26/240526_JH_NP_28_LysoIP_Fcrls_Microglia_candidates.tsv"
-lsd_csv_path = "/Users/riyathakuria/Documents/Zip files/LSD final insilico/Protein list/AA Unique protein.csv"
+ROOT = Path(__file__).resolve().parents[2]
 
 # Temporary pattern file and TSV output for the grep stream
 pattern_file = "temp_lsd_patterns.txt"
