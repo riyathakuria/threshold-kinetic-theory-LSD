@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # 1. Configuration and File Path
-file_path = r"/Users/riyathakuria/Documents/LSD_Insilico_Analysis_24:3:26/Raw data/PPI_SpatioTemporal_Expression.csv"
+ROOT = Path(__file__).resolve().parents[2]
 
 # 2. Load Data
 df_raw = pd.read_csv(file_path)
