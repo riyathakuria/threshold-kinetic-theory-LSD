@@ -1,30 +1,3 @@
-#!/usr/bin/env python3
-"""
-Phase 3 · Step 07 — Preprocess GSE221609 snRNA-seq & annotate microglia
-=======================================================================
-
-Loads the GSE221609 10x triplet (Npc1-/- vs WT mouse forebrain, snRNA-seq),
-attaches genotype from the barcode suffix, runs QC + CP10k/log1p
-normalization, clusters (PCA/neighbors/UMAP/Leiden), and annotates microglia
-by CANONICAL MOUSE MARKER EXPRESSION (Cx3cr1, P2ry12, Tmem119, Hexb, C1qa/b,
-Csf1r) — not de novo cluster identity alone. This is an oligodendrocyte-
-focused study, so microglia are a minority subset that must be extracted.
-
-No published per-cell annotations are distributed in the GEO supplementary
-(raw matrix only), so clusters are formed here and microglia identified by
-marker score; the marker evidence is written out so the call is auditable.
-
-Outputs:
-  checkpoints/npc_microglia.h5ad   microglia-only, normalized, with genotype
-  tables/npc_celltype_marker_scores.csv   per-cluster marker scores
-  tables/npc_microglia_counts.csv         microglia per genotype
-  figures/P3_npc_umap_qc.pdf/.png          QC + annotation UMAP panel
-  docs/npc_preprocessing.md                methods + decisions
-
-Standalone: run inside the `humica` conda env.
-"""
-from __future__ import annotations
-
 import os
 import sys
 
