@@ -39,17 +39,6 @@ def resumable_download(url, dest, expected_size, max_retries=40):
     """
     Download url -> dest with POSITION-AUTHORITATIVE HTTP Range resume.
 
-    The sandbox proxy does not reliably honor Range boundaries: a naive append
-    strategy duplicated bytes during retry storms and produced an oversized,
-    corrupt file. To be robust we treat the SERVER's reported byte offset as
-    authoritative: we request `Range: bytes={have}-`, read the `Content-Range`
-    response header to learn the true start offset, seek() the .part file to
-    that offset (mode 'r+b'), and write there. Any overlap simply overwrites the
-    same positions rather than growing the file. We also stop writing at
-    expected_size so an over-long stream cannot inflate the file.
-
-    Digests are computed in a final pass over the assembled file.
-    """
     part = dest + ".part"
     # ensure file exists for r+b seeking
     if not os.path.exists(part):
