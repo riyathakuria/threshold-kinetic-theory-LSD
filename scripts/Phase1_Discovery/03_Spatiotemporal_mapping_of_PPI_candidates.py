@@ -69,10 +69,10 @@ def perform_smart_mapping():
     # Report missing for diagnostics
     missing = set(target_map.keys()) - found_clean_symbols
     if missing:
-        print(f"⚠️ Warning: {len(missing)} genes still not found.")
+        print(f" Warning: {len(missing)} genes still not found.")
         print("Missing Cleaned Symbols:", [target_map[m] for m in missing])
     else:
-        print("✅ Success: All genes found!")
+        print(" Success: All genes found!")
 
     # --- STEP 4: EXTRACTION ---
     print(f"\nStep 4: Loading data for {len(match_indices)} rows...")
@@ -102,7 +102,7 @@ def perform_smart_mapping():
 
     final_df = pd.DataFrame(results)
     final_df.to_csv(output_path, index=False)
-    print(f"\n✅ Done! File saved to: {output_path}")
+    print(f"\n Done! File saved to: {output_path}")
 
 if __name__ == "__main__":
     perform_smart_mapping()
