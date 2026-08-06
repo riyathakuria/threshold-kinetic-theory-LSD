@@ -3,30 +3,6 @@
 Phase 2 · Step 01 — Load master checkpoint & derive candidate object
 ====================================================================
 
-Loads the Phase-1 validated HuMicAtlas checkpoint as the AUTHORITATIVE
-master object and preserves it UNCHANGED (read-only; verified by MD5
-before/after). Derives a separate, lightweight candidate-only AnnData
-containing ONLY the 41 confirmed candidate genes, for computational
-efficiency in downstream steps. The master remains the authoritative input.
-
-Inputs
-------
-  checkpoints/HuMicAtlas_validated.h5ad   (master, 90,716 x 3,000, read-only)
-  tables/candidate_presence.csv           (41 present candidates + labels)
-
-Outputs
--------
-  checkpoints/phase2_candidates.h5ad       (90,716 x 41, derived reduction)
-  data/metadata/state_label_map.csv        (V1_clusters int -> published name)
-  data/metadata/phase2_candidate_genes.csv (41 genes: Ensembl, symbol, labels)
-  logs/01_load_checkpoint.log
-
-Design notes
-------------
-- The master is opened in backed='r' mode; we NEVER write to it.
-- MD5 of the master is recorded before and after; a mismatch aborts.
-- State labels are attached to the DERIVED object only.
-"""
 import os
 import sys
 import json
