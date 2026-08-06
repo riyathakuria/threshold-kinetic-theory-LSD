@@ -1,39 +1,4 @@
-#!/usr/bin/env python3
-"""
-Phase 2 · Step 04 — STRING-module conservation across microglial states
-=======================================================================
 
-Three complementary, module-level readouts on the native SCT Pearson-
-residual scale (see _phase2_config). Modules = the original STRING MCL
-clusters (NOT collapsed). Clusters 2 & 3 have no v2-present genes and are
-absent by construction; single-gene modules (cluster 8 = A2M) cannot carry
-a within-module coherence value (needs >=2 genes) and are reported as NaN.
-
-1. ACTIVITY  — sc.tl.score_genes per module (control-gene-corrected mean
-   residual of module members), then mean module score per published state.
-   Answers: is the module coordinately represented, and where?
-
-2. COHERENCE — within-module gene-gene co-expression: mean pairwise Spearman
-   correlation of member-gene residuals across all cells, and the same
-   restricted to each module's most-active state. Answers: do module members
-   move together (a conserved co-expression program) or independently?
-
-3. COMPOSITION — Stable vs Dynamic gene counts per module (NormFinder
-   developmental classification, fixed). Answers: how much of each module's
-   conserved signal is developmentally stable vs dynamic?
-
-Inputs
-------
-  checkpoints/phase2_candidates.h5ad
-  tables/phase2_state_assignment.csv          (for reference; not required)
-
-Outputs
--------
-  tables/phase2_module_activity_by_state.csv  (module x state mean score)
-  tables/phase2_module_coherence.csv          (per-module coherence summary)
-  tables/phase2_module_conservation.csv       (combined module-level table)
-  logs/04_module_conservation.log
-"""
 import os
 import sys
 import json
