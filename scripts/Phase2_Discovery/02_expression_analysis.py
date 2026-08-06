@@ -1,34 +1,6 @@
 #!/usr/bin/env python3
-"""
-Phase 2 · Step 02 — Per-gene adult expression across microglial states
-======================================================================
+Per-gene adult expression across microglial states
 
-Scale decision (see _phase2_config.EXPRESSION_MATRIX):
-    The fixed checkpoint stores SCT Pearson residuals (scale.data) in .X.
-    There are no counts / log-normalized values in the object. Therefore
-    'expression' throughout Phase 2 == mean SCT Pearson residual, and we do
-    NOT compute percent-expressing / detection metrics (they require a
-    non-negative detection scale this object does not carry).
-
-For each of the 41 confirmed candidate genes this computes, per published
-microglial state, the mean / median / SD SCT residual. It then derives a
-lightweight, DESCRIPTIVE per-gene summary: the argmax preferred state and
-the across-state residual range (max-min of the per-state means). No
-specificity index (Tau) and no threshold classification are produced;
-biological interpretation is carried at the module level (steps 03-04).
-
-Inputs
-------
-  checkpoints/phase2_candidates.h5ad
-  data/metadata/phase2_candidate_genes.csv
-
-Outputs
--------
-  tables/phase2_expression_by_state.csv        (long: gene x state, residuals)
-  tables/phase2_expression_mean_matrix.csv     (wide: gene x state mean residual)
-  tables/phase2_gene_expression_summary.csv    (per-gene descriptive summary)
-  logs/02_expression_analysis.log
-"""
 import os
 import sys
 import json
