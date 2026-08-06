@@ -1,25 +1,4 @@
 #!/usr/bin/env python3
-"""
-Phase 3 · Step 07b — Preprocess GSE152158 bulk RNA-seq (disease-course axis)
-============================================================================
-
-GSE152158 is bulk RNA-seq of FACS-purified mouse microglia across the NPC
-disease course. The GEO supplementary file `GSE152158_NormCountData.csv.gz`
-is ALREADY a normalized count matrix (genes x samples), so we do NOT re-run
-TMM/CPM (that would double-normalize). We:
-  1. restrict to the disease-course samples WT-{1,3,6,9}{A-D} and
-     NPC-{1,3,6,9}{A-D}, EXCLUDING the CSF1R-inhibitor arms (NPC-PLX*, NPC-Con*),
-  2. log2(x+1) transform for downstream scoring,
-  3. attach a tidy sample-metadata table (genotype, week, replicate),
-  4. write the normalized/log matrix + metadata + a QC figure.
-
-Outputs:
-  tables/bulk_expression_normalized.csv     genes x disease-course samples (log2)
-  tables/bulk_sample_metadata.csv           sample | genotype | week | replicate
-  figures/P3_bulk_qc.pdf/.png               library-size, PCA, sample corr
-"""
-from __future__ import annotations
-
 import os
 import re
 import sys
