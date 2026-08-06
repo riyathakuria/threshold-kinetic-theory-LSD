@@ -1,19 +1,4 @@
-#!/usr/bin/env python3
-"""
-Phase 1 - Step 4: Inspect the HuMicA v2 AnnData object (RAM-safe, backed mode).
 
-Because total RAM (~8.6 GB) is smaller than the on-disk matrix, the object is
-opened with backed='r' so the expression matrix is never materialized in RAM.
-We read structure from .obs/.var/.raw/.layers/.uns/.obsm and, where matrix stats
-are needed, we stream via h5py directly.
-
-Writes:
-  docs/humica_structure_report.md
-  data/metadata/humica_var_index.csv        (.X var names)
-  data/metadata/humica_raw_var_index.csv     (.raw var names, if present)
-  data/metadata/humica_obs_head.csv          (first 200 obs rows)
-  data/metadata/humica_structure.json        (machine-readable summary)
-"""
 import os, sys, json
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _env import ROOT, setup_numba_cache
