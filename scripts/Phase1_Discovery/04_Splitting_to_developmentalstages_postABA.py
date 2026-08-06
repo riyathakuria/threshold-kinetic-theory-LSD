@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Define the local file path
-file_path = r'/Users/riyathakuria/Documents/LSD_Insilico_Analysis_24:3:26/Raw data/PPI_SpatioTemporal_Expression.csv'
+ROOT = Path(__file__).resolve().parents[2]
 
 # Load the dataset
 df = pd.read_csv(file_path)
