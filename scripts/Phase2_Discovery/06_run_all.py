@@ -1,35 +1,4 @@
-#!/usr/bin/env python3
-"""
-Phase 2 · Step 06 — Orchestration: run the full pipeline in order
-=================================================================
 
-Runs the Phase 2 analysis end-to-end by executing steps 01 -> 05 in a fixed,
-dependency-respecting order as separate subprocesses (each step is a
-standalone script that reads/writes CSV tables and figures; only step 01
-touches the h5ad). Logs each step's start/finish and elapsed time, and stops
-on the first non-zero exit code.
-
-Order & data flow
------------------
-  01_load_checkpoint.py     master h5ad (read-only, MD5-verified)
-                            -> checkpoints/phase2_candidates.h5ad
-  02_expression_analysis.py candidate h5ad -> tables/phase2_expression_*.csv
-  03_state_assignment.py    candidate h5ad -> tables/phase2_state_*.csv
-  04_module_conservation.py candidate h5ad -> tables/phase2_module_*.csv
-  05_generate_figures.py    tables/*.csv   -> figures/H1-H4 (PNG + PDF)
-
-Usage
------
-    python scripts/06_run_all.py              # run all steps
-    python scripts/06_run_all.py --from 02    # resume from step 02
-    python scripts/06_run_all.py --only 05    # run a single step
-    python scripts/06_run_all.py --skip-load  # skip step 01 (reuse candidate h5ad)
-
-Environment
------------
-Run inside the `humica` conda env. NUMBA_CACHE_DIR is set to a writable path
-so scanpy imports succeed under a read-only env mount (mirrors _env.py).
-"""
 
 from __future__ import annotations
 
