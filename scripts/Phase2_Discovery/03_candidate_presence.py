@@ -1,33 +1,4 @@
-#!/usr/bin/env python3
-"""
-Phase 1 - Step 5: Locate all 109 candidate genes within the HuMicA v2 atlas.
 
-RULES (from project spec):
-  * The 109-gene candidate universe is FIXED. We do NOT reduce it. The goal is to
-    record WHERE each gene lives (or that it is absent), never to intersect-and-drop.
-  * We never "intersect with .X first". We inspect .X (var), .raw (raw.var) and the
-    SCT layer's feature set independently, then classify each candidate.
-  * Every candidate is classified into exactly one Status and given a Reason.
-
-Atlas gene namespaces (established in Step 4) - all Ensembl gene IDs:
-  * .var index  == 'features'      (3000 HVGs, RNA assay)
-  * .var SCT_features               (3000, SCT assay variable features)
-  * .raw/var/_index                 (3000)
-  All three are the SAME 3000 Ensembl IDs in different orderings, so the atlas has a
-  single searchable universe of 3000 highly-variable genes. We still check each slot
-  separately and report per-slot presence for full transparency.
-
-Inputs:
-  data/raw/HuMicA_v2.0.0.h5ad                 (gene namespaces, via h5py - no matrix load)
-  tables/candidate_mapping.csv                (109 genes -> Ensembl IDs, resolved)
-  Raw data 2/Gene_Stability_Classification.csv (Stable/Dynamic labels)
-  Raw data 2/Top10_PPI_clusters.xlsx           (STRING cluster assignments; 'Gene ' has trailing space)
-
-Outputs:
-  tables/candidate_presence.csv        (per-gene: slots present + Stable/Dynamic + STRING cluster)
-  tables/candidate_mapping_audit.csv   (Original Symbol, Alias Used, Ensembl ID,
-                                        Present in var, Present in raw, Status, Reason)
-"""
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _env import ROOT
