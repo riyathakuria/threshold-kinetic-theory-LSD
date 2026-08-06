@@ -1,39 +1,4 @@
-#!/usr/bin/env python3
-"""
-Phase 2 · Step 03 — Descriptive gene -> preferred-state assignment
-==================================================================
 
-Scale: SCT Pearson residuals (see _phase2_config). No specificity index
-(Tau) is computed — the object carries no non-negative detection scale, and
-per the Phase 2 decision, gene-level specificity is reported ONLY as simple,
-auditable descriptors:
-
-    preferred_state   = argmax over states of the mean SCT residual
-    preferred_group   = functional group of that state
-    top_mean          = residual at the preferred state
-    second_mean       = residual at the 2nd-ranked state
-    assignment_margin = top_mean - second_mean   (how clear the preference is)
-
-We deliberately do NOT threshold or bin these margins into
-'specific/broad' classes; small margins are reported as-is so the reader
-can see that many housekeeping-like genes are broadly represented across
-states. Biological interpretation is carried at the module level (step 04).
-
-A per-state composition table summarises how many Stable vs Dynamic genes
-prefer each state (feeds the module-centric discussion, not a claim about
-state identity).
-
-Inputs
-------
-  tables/phase2_expression_mean_matrix.csv   (from step 02)
-  data/metadata/phase2_candidate_genes.csv
-
-Outputs
--------
-  tables/phase2_state_assignment.csv         (per-gene descriptive assignment)
-  tables/phase2_state_composition.csv        (per-state Stable/Dynamic counts)
-  logs/03_state_assignment.log
-"""
 import os
 import sys
 import json
