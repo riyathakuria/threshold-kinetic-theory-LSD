@@ -1,24 +1,3 @@
-#!/usr/bin/env python3
-"""
-Phase 3 · Step 09 — Project Phase-2 STRING modules onto the disease axis
-========================================================================
-
-Scores the eight Phase-2 STRING MCL modules along:
-  (1) PRIMARY axis  — GSE152158 bulk real-time course (weeks 1/3/6/9), and
-  (2) SUPPORTING axis — GSE221609 single-cell diffusion pseudotime.
-
-Module definitions are the SAME STRING clusters from Phase 2, mapped from human
-to mouse via data/metadata/ortholog_map.csv. STRING module identities are
-PRESERVED throughout (never collapsed / renamed). The control-gene strategy is
-IDENTICAL to Phase 2: sc.tl.score_genes(ctrl_size=50, random_state=0).
-
-Outputs:
-  tables/module_bulk_timecourse.csv    module x bulk-sample scores + week/geno
-  tables/module_pseudotime_scores.csv  module x cell scores along DPT
-  tables/module_mapping_report.csv     per-module ortholog coverage / flags
-"""
-from __future__ import annotations
-
 import os
 import sys
 
