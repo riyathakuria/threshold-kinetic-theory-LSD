@@ -2,13 +2,6 @@
 """
 Phase 1 - Step 3: Software validation & environment report.
 
-Records Python version, platform, RAM, and versions of the single-cell stack
-(scanpy, anndata, h5py, numba, scipy, pandas + supporting libs). Documents the
-numba-cache workaround required for scanpy import in a read-only conda env, and
-the RAM constraint that forces backed-mode AnnData inspection.
-
-Writes docs/environment_report.md.
-"""
 import os, sys, platform, datetime
 import importlib.metadata as ilm
 
